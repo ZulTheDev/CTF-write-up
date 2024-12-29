@@ -19,4 +19,4 @@ dicom_array = [25, 10, 0, 3, 17, 19, 23, 27, 4, 13, 20, 8, 24, 21, 31, 15, 7, 29
 
 # GPT help with the line ouput
 output = ''.join(''.join(dicom_byte[i].decode('utf-8').split('\x00')).strip() for i in dicom_array)
-print("WGMY{"+output+"}")
+print("wgmy{"+output+"}")
