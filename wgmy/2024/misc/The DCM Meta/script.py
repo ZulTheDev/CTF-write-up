@@ -12,7 +12,11 @@ dicom_byte = [
 
 dicom_array = [25, 10, 0, 3, 17, 19, 23, 27, 4, 13, 20, 8, 24, 21, 31, 15, 7, 29, 6, 1, 9, 30, 22, 5, 28, 18, 26, 11, 2, 14, 16, 12]
 
-for i in dicom_array:     
-    base = dicom_byte[i].decode('utf-8').split('\x00')     
-    flag = f"WGMY {''.join(base).strip()}"
-    print(flag, end=' ')
+# for i in dicom_array:     
+#     base = dicom_byte[i].decode('utf-8').split('\x00')     
+#     flag = f"WGMY {''.join(base).strip()}"
+#     print(flag, end=' ')
+
+# GPT help with the line ouput
+output = ''.join(''.join(dicom_byte[i].decode('utf-8').split('\x00')).strip() for i in dicom_array)
+print(f"WGMY{output}")
