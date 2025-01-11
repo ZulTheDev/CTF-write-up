@@ -1,20 +1,12 @@
-from scapy.all import rdpcap, DNSQR
+from scapy.all import rdpcap
 
 # Load the PCAP file
-pcap_file_path = 'capture.pcap'  # Replace with the path to your file
+pcap_file_path = 'capture.pcap'  # Replace with your file's path
 packets = rdpcap(pcap_file_path)
 
-# Filter DNS packets and check for the specific query
-dns_queries = []
-target_domain = "173.18.0.2"
-for packet in packets:
-    if packet.haslayer(DNSQR) and packet[DNSQR].qname.decode('utf-8').strip('.') == target_domain:
-        dns_queries.append(packet)
-
-# Print results
-print(f"Number of packets matching the domain '{target_domain}': {len(dns_queries)}")
-for pkt in dns_queries:
-    pkt.show()
-
-
-#GPT generated one hahahahaha
+# Extract and print hexadecimal data for each packet
+with open("hex_dump.txt", "w") as f:
+    for i, pkt in enumerate(packets):
+        hex_data = bytes(pkt).hex()
+        f.write(f"Packet {i + 1}:\n{hex_data}\n\n")
+print("Hexadecimal data has been written to 'hex_dump.txt'")
