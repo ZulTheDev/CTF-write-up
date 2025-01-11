@@ -6,7 +6,7 @@ packets = rdpcap(pcap_file_path)
 
 # Filter DNS packets and check for the specific query
 dns_queries = []
-target_domain = "chal123abcnotscam.com"
+target_domain = "173.18.0.2"
 for packet in packets:
     if packet.haslayer(DNSQR) and packet[DNSQR].qname.decode('utf-8').strip('.') == target_domain:
         dns_queries.append(packet)
